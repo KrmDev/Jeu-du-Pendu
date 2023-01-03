@@ -161,4 +161,36 @@ let options = {
 };
 
 
+// COMPTEUR : 
 
+let compteurPartieGagner = 0;
+let compteur             = 0;
+
+let motChoisi       = "";
+
+
+// afficher le bouton d'options :
+
+const affichageOptions = () => {
+    divOptions.innerHTML += `<h3> Choisissez une option : </h3>`;
+    let boutonOptions = document.createElement("div");
+    for (let value in options) {
+        boutonOptions.innerHTML += `<button class="options" onclick="generateWord('${value}')">${value}</button>`;
+    }
+    divOptions.appendChild(boutonOptions)  
+};
+
+
+// Fonction qui se lance quand l'utilisateur lance la page web ou clique sur le bouton nouvelle partie :
+
+const initialisation = () => {
+    compteurPartieGagner = 0;
+    compteur = 0;
+    affichageOptions();
+};
+
+
+// Nouvelle Partie :
+
+boutonNouvellePartie.addEventListener("click", initialisation);
+window.onload = initialisation;
