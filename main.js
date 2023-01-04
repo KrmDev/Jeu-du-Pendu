@@ -175,19 +175,43 @@ const affichageOptions = () => {
     divOptions.innerHTML += `<h3> Choisissez une option : </h3>`;
     let boutonOptions = document.createElement("div");
     for (let value in options) {
-        boutonOptions.innerHTML += `<button class="options" onclick="generateWord('${value}')">${value}</button>`;
+        boutonOptions.innerHTML += `<button class="options" onclick="generateurMot('${value}')">${value}</button>`;
     }
     divOptions.appendChild(boutonOptions)  
 };
 
 
+// Générateur de mot :
+
+const generateurMot = (ValeurOption) => {
+  let optionsBoutons = document.querySelectorAll(".options");
+  optionsBoutons.forEach((button) => {
+    if (button.innerText.toLowerCase() === ValeurOption) {
+      button.classList.add("active");
+    }
+    button.disabled = true;
+  });
+};
+
+
+
 // Fonction qui se lance quand l'utilisateur lance la page web ou clique sur le bouton nouvelle partie :
 
-const initialisation = () => {
-    compteurPartieGagner = 0;
-    compteur = 0;
-    affichageOptions();
-};
+function initialisation() {
+  compteurPartieGagner = 0;
+  compteur = 0;
+
+  // Pour crée le clavier de l'utilisateur 
+
+  for (let i = 65; i < 91; i++) {
+    let bouton = document.createElement("button");
+    bouton.classList.add("lettres");
+    bouton.innerText = String.fromCharCode(i);
+    divLettres.append(bouton);
+  }
+
+  affichageOptions();
+}
 
 
 // Nouvelle Partie :
