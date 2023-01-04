@@ -13,14 +13,75 @@ body {
 .container {
   font-size: 1em;
   background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
+  border-radius: 0.5em;
   box-shadow: 0 1.2em 2.4em rgba(111, 85, 0, 0.25);
   padding: 3em;
-  margin: 18% 20%;
+  width: 90vw;
+  max-width: 60em;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+#options {
+  text-align: center;
+}
+#options div {
+  width: 100%;
+  display: flex;
+  margin: 3em 0 2.4em 0;
+  justify-content: space-evenly;
+}
+#options button {
+  border: 3px solid black;
+  color: black;
+  padding: 0.6em 1.2em;
+  background-color: white;
+  border-radius: 0.3em;
+  text-transform: capitalize;
+}
+#options button:disabled {
+  border: 3px solid black;
+  color: #808080;
+  background-color: #efefef;
+}
+#options button.active {
+  background-color: #f4c531;
+  border: 3px solid black;
+  color: black;
+}
+
+#div-lettres {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9em;
+}
+#div-lettres button {
+  height: 2.7em;
+  width: 2.7em;
+  border-radius: 0.3em;
+  background-color: #ffffff;
+}
+
+.pop-up {
+  background-color: white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5em;
+}
+
+.cacher {
+  display: none;
 }
 
 /*# sourceMappingURL=default.css.map */
