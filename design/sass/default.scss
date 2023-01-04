@@ -61,7 +61,7 @@ body {
   }
 }
 
-#div-lettres {
+.div-lettres {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -92,4 +92,11 @@ body {
 
 .cacher {
   display: none;
+}
+
+#input {
+  display: flex;
+  justify-content: center;
+  font-size: 1.8em;
+  margin: 2em 0 1.2em 0;
 }

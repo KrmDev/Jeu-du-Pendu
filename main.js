@@ -8,7 +8,6 @@ const boutonNouvellePartie = document.querySelector("#bouttonNouvellePartie");
 const canvas = document.querySelector("#canvas");
 const resultat = document.querySelector("#resultat");
 
-
 // OPTIONS DE DEBUT DE PARTIE :
 
 let options = {
@@ -160,26 +159,39 @@ let options = {
   ],
 };
 
-
-// COMPTEUR : 
+// COMPTEUR :
 
 let compteurPartieGagner = 0;
-let compteur             = 0;
+let compteur = 0;
 
-let motChoisi       = "";
-
+let motChoisi = "";
 
 // afficher le bouton d'options :
 
 const affichageOptions = () => {
-    divOptions.innerHTML += `<h3> Choisissez une option : </h3>`;
-    let boutonOptions = document.createElement("div");
-    for (let value in options) {
-        boutonOptions.innerHTML += `<button class="options" onclick="generateurMot('${value}')">${value}</button>`;
-    }
-    divOptions.appendChild(boutonOptions)  
+  divOptions.innerHTML += `<h3> Choisissez une option : </h3>`;
+  let boutonOptions = document.createElement("div");
+  for (let value in options) {
+    boutonOptions.innerHTML += `<button class="options" onclick="generateurMot('${value}')">${value}</button>`;
+  }
+  divOptions.appendChild(boutonOptions);
 };
 
+// Bloquer tous les boutons du clavier :
+
+const bloqueur = () => {
+  let optionsBoutons = document.querySelectorAll(".options");
+  let ToucheClavier = document.querySelectorAll(".lettres");
+
+  optionsBoutons.forEach((button) => {
+    button.disabled = true;
+  });
+
+  ToucheClavier.forEach((button) => {
+    button.disabled.true;
+  });
+  SectionNouvellePartie.classList.remove("cacher");
+};
 
 // Générateur de mot :
 
@@ -191,9 +203,25 @@ const generateurMot = (ValeurOption) => {
     }
     button.disabled = true;
   });
+
+  divLettres.classList.remove("cacher");
+  inputUtilisateur.innerText = "";
+
+  let optionsTableaux = options[ValeurOption];
+
+  // Pour Choisir un mot aléatoire :
+
+  motChoisi =
+  optionsTableaux[Math.floor(Math.random() * optionsTableaux.length)];
+  motChoisi = motChoisi.toUpperCase();
+  console.log(motChoisi);
+
+  let affichageObjet = motChoisi.replace(/./g, '<span class="lignes">_</span>');
+
+  // Afficher chaque élément sous forme de span :
+
+  inputUtilisateur.innerHTML = affichageObjet;
 };
-
-
 
 // Fonction qui se lance quand l'utilisateur lance la page web ou clique sur le bouton nouvelle partie :
 
@@ -201,18 +229,45 @@ function initialisation() {
   compteurPartieGagner = 0;
   compteur = 0;
 
-  // Pour crée le clavier de l'utilisateur 
+  // Efface tout le contenu et cache les lettres et le bouton de nouvelle partie :
+
+  inputUtilisateur.innerHTML = "";
+  divOptions.innerHTML = "";
+  divLettres.classList.add("cacher");
+  SectionNouvellePartie.classList.add("cacher");
+  divLettres.innerHTML = "";
+
+  // Pour crée le clavier de l'utilisateur
 
   for (let i = 65; i < 91; i++) {
     let bouton = document.createElement("button");
     bouton.classList.add("lettres");
     bouton.innerText = String.fromCharCode(i);
+
+    bouton.addEventListener("click", () => {
+      let tableauxCaractere = motChoisi.split("");
+      let lignes = document.getElementsByClassName("lignes");
+
+      // Si l'utilisateur clique sur une lettres qui match avec le motChoisi et la remplace sur la ligne " d'input "
+
+      if (tableauxCaractere.includes(bouton.innerText)) {
+        tableauxCaractere.forEach((caractere, index) => {
+          if (caractere === bouton.innerText) {
+            lignes[index].innerText = caractere;
+            compteurPartieGagner += 1;
+            if (compteurPartieGagner == tableauxCaractere.length) {
+              resultat.innerHTML = `<h2 class='msg-gagnant'>Vous avez Gagné !</h2><p>Le mot était <span>${motChoisi}</span></p>`;
+              bloqueur();
+            }
+          }
+        });
+      }
+    });
     divLettres.append(bouton);
   }
 
   affichageOptions();
 }
-
 
 // Nouvelle Partie :
 
