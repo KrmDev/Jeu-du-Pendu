@@ -241,7 +241,7 @@ function initialisation() {
             lignes[index].innerText = caractere;
             compteurPartieGagner += 1;
             if (compteurPartieGagner == tableauxCaractere.length) {
-              resultat.innerHTML = `<h2 class='msg-gagnant'>Vous avez Gagné !</h2><p>Le mot etait <span>${motChoisi}</span></p>`;
+              resultat.innerHTML = `<h2 class='msg-gagnant'>Vous avez Gagné !</h2><p>Le mot était <span>${motChoisi}</span></p>`;
               bloqueur();
             }
           }
@@ -254,7 +254,7 @@ function initialisation() {
         dessinPendu(compteur);
         // Compteur = 6 ( toutes les partie du corps du pendu ) :
         if(compteur == 6 ) {
-          resultat.innerHTML = `<h2 class="msg-perdu">Vous avez Perdu !</h2><p>Le mot etait <span>${motChoisi}</span></p>`
+          resultat.innerHTML = `<h2 class="msg-perdu">Vous avez Perdu !</h2><p>Le mot était <span>${motChoisi}</span></p>`
           bloqueur();
         };
       }
