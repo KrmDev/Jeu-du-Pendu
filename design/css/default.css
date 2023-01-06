@@ -6,8 +6,12 @@
   font-family: "Poppins", sans-serif;
 }
 
+html {
+  height: 100%;
+}
+
 body {
-  background-color: #f4c531;
+  background: linear-gradient(to right, #fad961, #f76b1c);
 }
 
 .container {
@@ -89,6 +93,42 @@ body {
   justify-content: center;
   font-size: 1.8em;
   margin: 2em 0 1.2em 0;
+}
+
+canvas {
+  display: block;
+  margin: 1em auto;
+  border: 1px solid black;
+}
+
+#resultat h2 {
+  font-size: 2em;
+  text-align: center;
+}
+#resultat p {
+  font-size: 1.3em;
+  margin: 1em 0 2em 0;
+  text-align: center;
+}
+#resultat span {
+  font-weight: bold;
+}
+
+#bouttonNouvellePartie {
+  font-size: 1.2em;
+  padding: 0.5em 1em;
+  background-color: #f4c531;
+  border: 3px solid black;
+  color: black;
+  border-radius: 0.2em;
+}
+
+.msg-perdu {
+  color: red;
+}
+
+.msg-gagnant {
+  color: greenyellow;
 }
 
 /*# sourceMappingURL=default.css.map */
